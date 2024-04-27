@@ -1,0 +1,16 @@
+[package]
+name = "tpu-sol-test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-client = "1.18.11"
+solana-sdk = "1.18.12"
+tokio = "1.37.0"
+bincode = "1.3.3"
+[lib]
+name = "tpu_client"
+path = "src/lib.rs"
+crate-type = ["rlib", "dylib", "lib"]
