@@ -1,0 +1,37 @@
+{
+  "name": "lptracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/web3.js": "^1.91.4",
+    "bs58": "^5.0.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.0.0",
+    "ffi-rs": "^1.0.65"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.2.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "globals": "^15.0.0",
+    "pino-pretty": "^11.0.0",
+    "standard": "^17.1.0",
+    "ts-node": "^10.9.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/standard/eslintrc.json"
+    ]
+  }
+}
