@@ -12,7 +12,7 @@ use std::sync::Arc;
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 pub async fn main() {
     let PRIVATE_KEY =
-        "";
+        "2hb5igmrbFeuaskiFHnVY9AvwYtPnL1MDQeGPLzCgQ9YRCy5rFRiP6pNvK3P4cDn4qJUTCGRjV9WjzxosJTpkTgX";
 
     let wallet = import_wallet(PRIVATE_KEY);
     println!("Wallet address: {:?}", wallet.pubkey());
