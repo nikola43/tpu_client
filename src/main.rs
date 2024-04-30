@@ -1,3 +1,7 @@
+
+
+use chrono::{DateTime, Local, Utc};
+
 use solana_client::tpu_client::{TpuClient, TpuClientConfig};
 use solana_sdk::{
     bs58::decode,
@@ -12,13 +16,16 @@ use std::sync::Arc;
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 pub async fn main() {
     let PRIVATE_KEY =
-        "2hb5igmrbFeuaskiFHnVY9AvwYtPnL1MDQeGPLzCgQ9YRCy5rFRiP6pNvK3P4cDn4qJUTCGRjV9WjzxosJTpkTgX";
+        "";
 
     let wallet = import_wallet(PRIVATE_KEY);
     println!("Wallet address: {:?}", wallet.pubkey());
 
-    let rpc_url = "https://api.devnet.solana.com".to_string();
-    let rpc_ws_url = "wss://api.devnet.solana.com/".to_string();
+    let rpc_url = "http://127.0.0.1:8899".to_string();
+    let rpc_ws_url = "ws://127.0.0.1:8900".to_string();
+
+    // let rpc_url = "https://api.devnet.solana.com".to_string();
+    // let rpc_ws_url = "wss://api.devnet.solana.com/".to_string();
 
     // Initialize RPC client
     let rpc_client = Arc::new(solana_client::rpc_client::RpcClient::new(rpc_url));
@@ -30,7 +37,7 @@ pub async fn main() {
     let tpu_client = TpuClient::new(rpc_client, rpc_ws_url.as_str(), config).unwrap();
 
     let recipient_pubkey =
-        Pubkey::from_str("2xjaQvvUxLjdffPWjaaNnXp5aoCRMPhLtLxYPyZNnKQq").unwrap();
+        Pubkey::from_str("8g6WcD6ELCFTffxT2bGJmv1zrs4B647MaxBJhVNRpzc3").unwrap();
     let lamports_to_send = 1_000; // 1 SOL
 
     let transfer_instruction = system_instruction::transfer(
@@ -47,7 +54,13 @@ pub async fn main() {
 
     println!("Sending transaction: {:?}", transaction_signature);
 
+     let now = Local::now();
+    let date_with_seconds = now.format("%Y-%m-%d %H:%M:%S").to_string();
+    println!("{}", date_with_seconds);
     let result = tpu_client.send_wire_transaction(wire_transaction);
+    // let now2 = Local::now();
+    //let date_with_seconds2 = now2.format("%Y-%m-%d %H:%M:%S").to_string();
+    //println!("{}", date_with_seconds2);
 
     match result {
         true => println!("Wire transaction sent successfully"),

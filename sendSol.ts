@@ -26,8 +26,11 @@ async function main() {
       throw new Error("Unsupported platform");
   }
 
-  const rpc_url = "https://api.devnet.solana.com";
-  const ws_url = "wss://api.devnet.solana.com";
+  //const rpc_url = "https://api.devnet.solana.com";
+  //const ws_url = "wss://api.devnet.solana.com";
+
+  const rpc_url="http://127.0.0.1:8899"
+  const ws_url="ws://127.0.0.1:8900"
   const connection = new Connection(rpc_url, {
     wsEndpoint: ws_url,
   });
@@ -38,7 +41,7 @@ async function main() {
   })
 
   const wallet = Keypair.fromSecretKey(bs58.decode(PRIVATE_KEY));
-  const recipient = new PublicKey("2xjaQvvUxLjdffPWjaaNnXp5aoCRMPhLtLxYPyZNnKQq")
+  const recipient = new PublicKey("8g6WcD6ELCFTffxT2bGJmv1zrs4B647MaxBJhVNRpzc3")
   const amountLamports = LAMPORTS_PER_SOL / 100; // Sending 0.01 SOL
 
   const transaction = new Transaction();
