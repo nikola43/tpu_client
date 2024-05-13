@@ -29,8 +29,8 @@ async function main() {
   //const rpc_url = "https://api.devnet.solana.com";
   //const ws_url = "wss://api.devnet.solana.com";
 
-  const rpc_url="http://127.0.0.1:8899"
-  const ws_url="ws://127.0.0.1:8900"
+  let rpc_url = "https://api.devnet.solana.com";
+  let ws_url = "wss://api.devnet.solana.com/";
   const connection = new Connection(rpc_url, {
     wsEndpoint: ws_url,
   });
