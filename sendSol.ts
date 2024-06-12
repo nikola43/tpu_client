@@ -46,7 +46,7 @@ async function main() {
 
   const transaction = new Transaction();
   const latestBlockhash = await connection.getLatestBlockhash({
-    commitment: "finalized",
+    commitment: "confirmed",
   });
   transaction.recentBlockhash = latestBlockhash.blockhash;
   transaction.add(
@@ -60,6 +60,7 @@ async function main() {
 
   // Send the transaction to the network
   const serializedTransaction = transaction.serialize();
+  console.log("Sending transaction...", new Date().toISOString());
   const txResult = load({
     library: "tpu_client", // path to the dynamic library file
     funcName: 'send_tpu_tx', // the name of the function to call
@@ -68,13 +69,14 @@ async function main() {
     paramsValue: [rpc_url, ws_url, serializedTransaction, serializedTransaction.length] // the actual parameter values
   })
   close('tpu_client')
+  console.log("Sent", new Date().toISOString());
 
   // compute tx signature
   const signature = bs58.encode(transaction.signature!);
   console.log("Transaction sent:", signature);
-  if(txResult) {
+  if (txResult) {
     console.log(`https://explorer.solana.com/tx/${signature}?cluster=devnet`);
-  } 
+  }
 }
 
 main().catch((error) => {
